@@ -1,0 +1,53 @@
+model:
+  name: SupNotMIWAEModel
+  n_train_latents: 10
+  n_train_samples: 1
+  n_test_latents: 20
+  n_test_samples: 30
+  n_hidden: 64
+  n_units: 128
+  z_dim: 32
+  observe_dropout: 0.3
+  impute_type: fdecay
+  min_latent_sigma: 0.0001
+  min_sigma: 0.001
+  output_activation: sigmoid
+  output_dims: 1
+  classifier_num: 4
+  num_layer: 4
+  num_heads: 2
+  train_type: joint
+  classifier_hidden: 64
+  gp_prior: true
+  kernel: cauchy
+  length_scale: 7.
+  aggregation_method: mean
+dataset:
+  name: mimic3_mortality
+  balance: true
+  loss: binary_crossentropy
+  output_dims: 1
+  output_activation: sigmoid
+  metrics:
+    auprc: metrics.auprc
+    auroc: metrics.auroc
+    brier: metrics.brier
+    ece: metrics.ece
+    logloss: metrics.logloss
+    accuracy: metrics.accuracy
+train:
+  seed: 5
+  max_epochs: 300
+  batch_size: 128
+  learning_rate: 0.0001
+  warmup_steps: 0
+  early_stopping: 20
+  pretrain_epoch: 100
+  monitor_quantity: auroc
+  direction_of_improvement: max
+  optimizer: AdamW
+  weight_decay: 1.
+test:
+  seed: 1
+  batch_size: 64
+  ensemble_size: 3

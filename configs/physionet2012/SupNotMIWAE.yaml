@@ -1,0 +1,52 @@
+model:
+  name: SupNotMIWAEModel
+  n_train_latents: 1
+  n_train_samples: 1
+  n_test_latents: 1
+  n_test_samples: 1
+  n_hidden: 128
+  n_units: 128
+  z_dim: 32
+  observe_dropout: 0.4
+  impute_type: fdecay
+  min_latent_sigma: 0.0001
+  min_sigma: 0.001
+  classifier_num: 4
+  num_layer: 2
+  num_heads: 2
+  train_type: joint
+  classifier_hidden: 128   # agg_fn = mean # classifier pos_enc X # time scale X , # init_state, # max_timescale=100
+  gp_prior: true
+  kernel: cauchy
+  length_scale: 7.
+  aggregation_method: max
+
+dataset:
+  name: physionet2012
+  balance: true
+  loss: binary_crossentropy
+  output_dims: 1
+  output_activation: sigmoid
+  metrics:
+    auprc: metrics.auprc
+    auroc: metrics.auroc
+    brier: metrics.brier
+    ece: metrics.ece
+    logloss: metrics.logloss
+    accuracy: metrics.accuracy
+train:
+  seed: 3
+  max_epochs: 300
+  batch_size: 128
+  learning_rate: 0.001 # it is good
+  warmup_steps: 0
+  early_stopping: 20
+  monitor_quantity: auroc
+  pretrain_epoch: 150
+  direction_of_improvement: max
+  optimizer: Adam
+  weight_decay: 0.0
+test:
+  seed: 1
+  batch_size: 32
+  ensemble_size: 3

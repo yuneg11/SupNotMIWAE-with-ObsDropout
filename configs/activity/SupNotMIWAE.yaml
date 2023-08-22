@@ -1,0 +1,50 @@
+model:
+  name: SupNotMIWAEModel
+  n_train_latents: 10
+  n_train_samples: 1
+  n_test_latents: 10
+  n_test_samples: 10
+  n_hidden: 128
+  n_units: 128
+  z_dim: 10
+  observe_dropout: 0.3
+  impute_type: fdecay
+  min_latent_sigma: 0.0001
+  min_sigma: 0.001
+  classifier_num: 4
+  num_layer: 2
+  num_heads: 2
+  classifier_hidden: 128
+  gp_prior: true
+  kernel: cauchy
+  length_scale: 7.
+  aggregation_method: mean
+dataset:
+  name: activity
+  balance: false
+  loss: categorical_crossentropy
+  output_dims: [null, 11]
+  output_activation: softmax
+  metrics:
+    auprc: metrics.auprc
+    auroc: metrics.auroc
+    brier: metrics.brier
+    ece: metrics.ece
+    logloss: metrics.logloss
+    accuracy: metrics.accuracy
+train:
+  seed: 3
+  max_epochs: 300
+  batch_size: 128
+  learning_rate: 0.001
+  warmup_steps: 0
+  early_stopping: 20
+  monitor_quantity: accuracy
+  direction_of_improvement: max
+  optimizer: Adam
+  weight_decay: 1
+
+test:
+  seed: 1
+  batch_size: 64
+  ensemble_size: 3

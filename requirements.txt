@@ -1,0 +1,10 @@
+tensorflow>=2.9.1
+tensorflow-datasets>=4.6.0
+tensorflow-probability>=0.17.0
+scikit-learn>=1.1.1
+
+git+https://github.com/ExpectationMax/medical_ts_datasets.git
+git+https://github.com/ExpectationMax/keras-transformer.git
+
+nxcl==0.0.3.dev3
+einops==0.4.1
