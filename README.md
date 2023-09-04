@@ -4,7 +4,7 @@
 
 This repository contains the implementation for _Probabilistic Imputation for Time-series Classification with Missing Data_ (ICML 2023).
 
-SeungHyun Kim, Hyunsu Kim, [EungGu Yun](https://github.com/yuneg11), Hwangrae Lee, Jaehun Lee, Juho Lee
+SeungHyun Kim\*, Hyunsu Kim\*, [EungGu Yun](https://github.com/yuneg11)\*, Hwangrae Lee, Jaehun Lee, [Juho Lee](https://juho-lee.github.io)
 
 [[`Paper`](https://arxiv.org/abs/2308.06738)][[`ICML`](https://icml.cc/virtual/2023/poster/23522)][[`BibTeX`](#citation)]
 
